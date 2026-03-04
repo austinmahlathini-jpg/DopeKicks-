@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Landing Page</title>
+<link rel="stylesheet" href="Landingpage.css">
+</head>
+
+<body>
+
+<!-- ================= SOCIAL MEDIA ICONS ================= -->
+<div id="social-icons">
+    <img src="Instagram.jpg" alt="Instagram">
+    <img src="facebook.jpg" alt="Facebook">
+    <img src="Twitter.jpg" alt="Twitter">
+</div>
+
+<!-- ================= SEARCH ================= -->
+<section id="search">
+    <input type="search" placeholder="Search">
+</section>
+
+<!-- ================= LOGO ================= -->
+<div id="LOGO">
+    <img src="Logo.jpg" alt="Logo" height="190" width="300">
+</div>
+
+ <section id="NAVIGATION"> <!-- Site navigation menu -->
+        <ul>
+            <li><a href="Menssection.html">Men</a></li> <!-- Link to Men's page -->
+            <li><a href="Womens section.html">Women</a></li> <!-- Link to Women's page -->
+        </ul>
+
+<!-- ================= LANDING PAGE CONTENT ================= -->
+ 
+<!-- ================= HERO SLIDERS ================= -->
+
+<div class="landing-container">
+<!-- ================= MEN PAGE CONTENT ================= -->
+
+    <div class="slider-box">
+        <img class="menSlide" src="NIKE MEN'S AIR FORCE 1 ULTRA FLYKNIT LOW R 1,899.00.jpg">
+        <img class="menSlide" src="NIKE MEN'S AIR HUARACHE RUN R1,299.00.jpg">
+        <img class="menSlide" src="Vans men's old skool R 1,099.00.jpg">
+    </div>
+
+<!-- ================= FEMALE PAGE CONTENT ================= -->
+
+    <div class="slider-box">
+        <img class="womenSlide" src="CONVERSE WOMEN'S CHUCK TAYLOR ALL STAR SELENE SHIELD CANVAS MID R 1,999.00.jpg">
+        <img class="womenSlide" src="NIKE WOMEN'S AIR MAX 90 ULTRA BR R 1,799.00.jpg">
+        <img class="womenSlide" src="PUMA WOMEN'S FIERCE QUILTED R 1,699.00.jpg">
+    </div>
+
+</div>
+
+<script>
+// --- State Management ---
+// Track current slide indices for Men and Women sliders
+let m = 0;
+let w = 0;
+
+/**
+ * --- Carousel Logic ---
+ * Rotates images by hiding all slides and displaying the next one in sequence
+ */
+function showSlides() {
+    let i;
+    const men = document.getElementsByClassName("menSlide");
+    const women = document.getElementsByClassName("womenSlide");
+
+    // Hide all Men's slide images
+    for (i = 0; i < men.length; i++) {
+        men[i].style.display = "none";
+    }
+
+    // Hide all Women's slide images
+    for (i = 0; i < women.length; i++) {
+        women[i].style.display = "none";
+    }
+
+    // Increment indices and reset to 0 using the modulo operator once end is reached
+    m = (m + 1) % men.length;
+    w = (w + 1) % women.length;
+
+    // Display the current active slide for both categories
+    men[m].style.display = "block";
+    women[w].style.display = "block";
+}
+
+// --- Initialization ---
+// Show the first set of images immediately on page load
+showSlides();
+
+// Automate the slider to change every 3000ms (3 seconds)
+setInterval(showSlides, 3000);
+</script>
+
+</body>
+</html

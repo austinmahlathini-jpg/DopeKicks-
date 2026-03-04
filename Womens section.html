@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"> <!-- Set character encoding for text -->
+    <title>Women Section</title> <!-- Browser tab title -->
+    <link rel="stylesheet" type="text/css" href="Menssection.css"> <!-- Link external styles -->
+</head>
+
+<body>
+   <!-- ================= SOCIAL MEDIA ICONS ================= -->
+<div id="social-icons">
+    <!-- Instagram Link: Opens in a new tab for security and retention -->
+    <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+        <img src="Instagram.jpg" alt="Instagram">
+    </a>
+
+    <!-- Facebook Link: Uses 'rel' attribute to protect user data -->
+    <a href="https://www.facebook.com" target="_blank" rel="noopener noreferrer">
+        <img src="facebook.jpg" alt="Facebook">
+    </a>
+
+    <!-- Twitter/X Link: Keeps your website open while they browse your profile -->
+    <a href="https://www.twitter.com" target="_blank" rel="noopener noreferrer">
+        <img src="Twitter.jpg" alt="Twitter">
+    </a>
+</div>
+
+    <!-- ===== SEARCH ===== -->
+<section id="search">
+    <!-- Trigger the 'filterShoes' function on every keystroke -->
+    <input type="search" id="mySearch" placeholder="Search shoes..." onkeyup="filterShoes()">
+</section>
+
+
+<div id="LOGO"> 
+    <a href="Landingpage.html"> <!-- Link back to home -->
+        <img src="Logo.jpg" height="190" width="300" alt="Logo"> <!-- Brand logo image -->
+    </a>
+</div>
+
+    <h2 id="demo12">Women</h2> <!-- Page sub-heading -->
+
+    <section id="NAVIGATION"> <!-- Site navigation menu -->
+        <ul>
+            <li><a href="Menssection.html">Men</a></li> <!-- Link to Men's page -->
+            <li><a href="Womens section.html">Women</a></li> <!-- Link to Women's page -->
+        </ul>
+
+<!-- Row 1 Product Gallery -->
+<div class="hover12 column">
+    <div>
+        <figure>
+            <!-- Product image with custom data attributes for the JavaScript modal -->
+            <img src="NIKE WOMEN'S AIR MAX 90 ULTRA BR R 1,799.00.jpg" class="modal-trigger" 
+                 data-name="Nike Air Max 90  Ultra Br R" data-price="R 1,899.00" data-size="UK 6-12">
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="NIKE WOMEN'S AIR MAX THEA SE R 1,499.00.jpg" class="modal-trigger" 
+                 data-name="Nike Air Max Thea Se" data-price="R 1,299.00" data-size="UK 7-11">
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="NIKE WOMEN'S ROSHE ONE FLYKNIT R 1.399.00.jpg" class="modal-trigger" 
+                 data-name="Nike Roshe One Flyknit" data-price="R 1,099.00" data-size="UK 4-10">
+        </figure>
+    </div>
+</div>
+
+<!-- Row 2 Product Gallery -->
+<div class="hover12 column">
+    <div>
+        <figure>
+            <img src="PUMA WOMEN'S FIERCE QUILTED R 1,699.00.jpg" class="modal-trigger" 
+                 data-name="Puma Fierce Quilted" data-price="R 1,299.00" data-size="UK 6-12">
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="PUMA WOMEN'S SUEDE PLATFORM R 1,499.00.jpg" class="modal-trigger" 
+                 data-name="Puma Suede Platform" data-price="R 1,899.00" data-size="UK 7-12">
+        </figure>
+    </div>
+    <div>
+        <figure>
+            <img src="CONVERSE WOMEN'S CHUCK TAYLOR ALL STAR SELENE SHIELD CANVAS MID R 1,999.00.jpg" class="modal-trigger" 
+                 data-name="Converse Chuck Taylor All Star" data-price="R 2,299.00" data-size="UK 6-11">
+        </figure>
+    </div>
+</div>
+
+
+<!-- Hidden modal popup structure -->
+<div id="shoeModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn">&times;</span> <!-- Close 'X' icon -->
+        <img id="modalImg" src="" alt="" style="width:100%"> <!-- Placeholder for product image -->
+        <h2 id="modalName"></h2> <!-- Placeholder for product title -->
+        <p id="modalPrice"></p> <!-- Placeholder for product price -->
+        
+        <div class="modal-actions">
+            <label for="sizeSelect">Select UK Size:</label>
+            <select id="sizeSelect"> <!-- Dropdown for shoe sizes -->
+                <option value="">Choose size</option>
+                <option value="6">UK 6</option>
+                <option value="7">UK 7</option>
+                <option value="8">UK 8</option>
+                <option value="9">UK 9</option>
+                <option value="10">UK 10</option>
+                <option value="11">UK 11</option>
+                <option value="12">UK 12</option>
+            </select>
+            
+            <br><br>
+            
+            <button id="addToCartBtn" style="padding: 10px 20px; background-color: #000; color: #fff; cursor: pointer;">
+                Add to Cart
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+// Select and store references to all interactive elements
+const modal = document.getElementById("shoeModal"); // The modal background
+const modalImg = document.getElementById("modalImg"); // Image inside modal
+const modalName = document.getElementById("modalName"); // Name inside modal
+const modalPrice = document.getElementById("modalPrice"); // Price inside modal
+const closeBtn = document.querySelector(".close-btn"); // Close button
+const sizeSelect = document.getElementById("sizeSelect"); // Size dropdown
+const addToCartBtn = document.getElementById("addToCartBtn"); // Action button
+
+// Listen for clicks anywhere on the document (Event Delegation)
+document.addEventListener("click", function (e) {
+    // Check if the clicked item has the 'modal-trigger' class
+    if (e.target.classList.contains("modal-trigger")) {
+        const shoeData = e.target.dataset; // Access all data-* attributes of the image
+
+        modalImg.src = e.target.src; // Set modal image to match the clicked image
+        modalName.innerText = shoeData.name; // Set name from data-name
+        modalPrice.innerText = "Price: " + shoeData.price; // Set price from data-price
+
+        sizeSelect.selectedIndex = 0; // Reset dropdown to default option
+
+        modal.style.display = "block"; // Show the modal
+    }
+});
+
+// Click event for the 'Add to Cart' button
+addToCartBtn.onclick = () => {
+    const selectedSize = sizeSelect.value; // Get the currently selected size
+    const name = modalName.innerText; // Get the product name
+
+    if (selectedSize === "") {
+        alert("Please select a UK size first!"); // Show error if no size is chosen
+    } else {
+        alert(name + " (Size UK " + selectedSize + ") has been added to your cart!"); // Success message
+        modal.style.display = "none"; // Close modal after successful add
+    }
+};
+
+// Click event to hide modal when clicking the 'X'
+closeBtn.onclick = () => modal.style.display = "none";
+
+// Click event to hide modal when clicking the dark background area
+window.onclick = (e) => { if (e.target == modal) modal.style.display = "none"; };
+
+
+
+
+
+
+
+// script for filtering the shoes when user types on the search engine 
+
+function filterShoes() {
+    // 1. Get search input and convert to lowercase for case-insensitive matching
+    const input = document.getElementById('mySearch').value.toLowerCase();
+    
+    // 2. Select all items that contain shoe data
+    const items = document.querySelectorAll('.modal-trigger');
+    const noResultsMsg = document.getElementById('noResults');
+    
+    // 3. Keep track of how many shoes match the search
+    let visibleCount = 0;
+
+    items.forEach(item => {
+        // 4. Extract the shoe name from the data attribute
+        const shoeName = item.getAttribute('data-name').toLowerCase();
+        const productContainer = item.closest('div'); // The box holding the shoe
+
+        // 5. Toggle visibility based on the search match
+        if (shoeName.includes(input)) {
+            productContainer.style.display = ""; // Show matching item
+            visibleCount++; // Increment count
+        } else {
+            productContainer.style.display = "none"; // Hide non-matching item
+        }
+    });
+
+    // 6. Show the "No Results" message only if 0 shoes match
+    if (visibleCount === 0) {
+        noResultsMsg.style.display = "block";
+    } else {
+        noResultsMsg.style.display = "none";
+    }
+}
+
+
+</script>
+
+
+
